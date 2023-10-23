@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>SIGPIPE</title>
+    <link href="/2023/10/23/SIGPIPE/"/>
+    <url>/2023/10/23/SIGPIPE/</url>
+    
+    <content type="html"><![CDATA[<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux信号</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>TLS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>TLS握手</title>
     <link href="/2023/10/23/TLS%E6%8F%A1%E6%89%8B/"/>
     <url>/2023/10/23/TLS%E6%8F%A1%E6%89%8B/</url>

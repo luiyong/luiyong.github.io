@@ -17,6 +17,31 @@
   
   
   <entry>
+    <title>TLS握手</title>
+    <link href="/2023/04/22/TLS%E6%8F%A1%E6%89%8B/"/>
+    <url>/2023/04/22/TLS%E6%8F%A1%E6%89%8B/</url>
+    
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><h4 id="握手流程"><a href="#握手流程" class="headerlink" title="握手流程"></a>握手流程</h4><h4 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>HTTPS</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>TLS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>内核互斥</title>
     <link href="/2023/04/22/%E5%86%85%E6%A0%B8%E4%BA%92%E6%96%A5/"/>
     <url>/2023/04/22/%E5%86%85%E6%A0%B8%E4%BA%92%E6%96%A5/</url>

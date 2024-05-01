@@ -7,7 +7,7 @@ title: Hexo
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: luiyong
 language: zh-CN
 timezone: ''
 
@@ -103,5 +103,5 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repository: git@github.com:imlvyong/imlvyong.github.io.git
+  repository: git@github.com:luiyong/luiyong.github.io.git
   branch: master

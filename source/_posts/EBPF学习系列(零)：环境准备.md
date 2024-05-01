@@ -23,11 +23,9 @@ sudo apt-get install linux-generic
 
 #### 挂载Ftrace
 ```shell
-
 sysctl -q kernel.ftrace_enabled=1
 
 mount -t debugfs debugfs /sys/kernel/debug/
 mount -t tracefs tracefs /sys/kernel/debug/tracing
-
 ```
 #### 运行示例

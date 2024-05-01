@@ -16,14 +16,14 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原子操作原子位操作自旋锁信号量seq锁完成变量">
+    <meta name="description" content="重点TSO分段发送缓冲区变化源码地址 tcp_trace^[https:&#x2F;&#x2F;github.com&#x2F;luiyong&#x2F;nettrace&#x2F;blob&#x2F;master&#x2F;examples&#x2F;c&#x2F;tcp_trace.c]  参考文章 Code Walkthrough^[http:&#x2F;&#x2F;chenshuo.com&#x2F;tcpip-study&#x2F;walkthrough&#x2F;] 一个 TCP 发送缓冲区问题的解析^[https:&#x2F;&#x2F;s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内核互斥">
-<meta property="og:url" content="http://example.com/2023/04/22/%E5%86%85%E6%A0%B8%E4%BA%92%E6%96%A5/index.html">
+<meta property="og:title" content="EBPF学习系列(零)：环境准备">
+<meta property="og:url" content="http://example.com/2024/05/01/EBPF%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97(%E4%B8%80)%EF%BC%9ATCP%20blocking%20write%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="原子操作原子位操作自旋锁信号量seq锁完成变量">
+<meta property="og:description" content="重点TSO分段发送缓冲区变化源码地址 tcp_trace^[https:&#x2F;&#x2F;github.com&#x2F;luiyong&#x2F;nettrace&#x2F;blob&#x2F;master&#x2F;examples&#x2F;c&#x2F;tcp_trace.c]  参考文章 Code Walkthrough^[http:&#x2F;&#x2F;chenshuo.com&#x2F;tcpip-study&#x2F;walkthrough&#x2F;] 一个 TCP 发送缓冲区问题的解析^[https:&#x2F;&#x2F;s">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-22T16:48:29.000Z">
+<meta property="article:published_time" content="2024-05-01T13:46:00.000Z">
 <meta property="article:modified_time" content="2024-05-01T05:50:04.608Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="内核">
@@ -31,7 +31,7 @@
   
   
   
-  <title>内核互斥 - Hexo</title>
+  <title>EBPF学习系列(零)：环境准备 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="内核互斥"></span>
+            <span id="subtitle" data-typed-text="EBPF学习系列(零)：环境准备"></span>
           
         </div>
 
@@ -208,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-22 16:48" pubdate>
-          2023年4月22日 下午
+        <time datetime="2024-05-01 13:46" pubdate>
+          2024年5月1日 下午
         </time>
       </span>
     
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23 字
+          227 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -269,12 +269,19 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">内核互斥</h1>
+            <h1 style="display: none">EBPF学习系列(零)：环境准备</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h3><h3 id="原子位操作"><a href="#原子位操作" class="headerlink" title="原子位操作"></a>原子位操作</h3><h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><h3 id="seq锁"><a href="#seq锁" class="headerlink" title="seq锁"></a>seq锁</h3><h3 id="完成变量"><a href="#完成变量" class="headerlink" title="完成变量"></a>完成变量</h3>
+                <h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><h3 id="TSO分段"><a href="#TSO分段" class="headerlink" title="TSO分段"></a>TSO分段</h3><h3 id="发送缓冲区变化"><a href="#发送缓冲区变化" class="headerlink" title="发送缓冲区变化"></a>发送缓冲区变化</h3><h3 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h3><ul>
+<li>tcp_trace^[<a target="_blank" rel="noopener" href="https://github.com/luiyong/nettrace/blob/master/examples/c/tcp_trace.c]">https://github.com/luiyong/nettrace/blob/master/examples/c/tcp_trace.c]</a></li>
+</ul>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li>Code Walkthrough^[<a target="_blank" rel="noopener" href="http://chenshuo.com/tcpip-study/walkthrough/]">http://chenshuo.com/tcpip-study/walkthrough/]</a></li>
+<li>一个 TCP 发送缓冲区问题的解析^[<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021488755]">https://segmentfault.com/a/1190000021488755]</a></li>
+</ul>
+
                 
               </div>
             
@@ -292,7 +299,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%86%85%E6%A0%B8/" class="category-chain-item">内核</a>
+  <a href="/categories/EBPF/" class="category-chain-item">EBPF</a>
   
   
 
@@ -319,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>内核互斥</div>
-      <div>http://example.com/2023/04/22/内核互斥/</div>
+      <div>EBPF学习系列(零)：环境准备</div>
+      <div>http://example.com/2024/05/01/EBPF学习系列(一)：TCP blocking write分析/</div>
     </div>
     <div class="license-meta">
       
@@ -332,7 +339,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月22日</div>
+          <div>2024年5月1日</div>
         </div>
       
       
@@ -364,15 +371,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/23/TLS%E6%8F%A1%E6%89%8B/" title="TLS握手">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">TLS握手</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/05/01/EBPF%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97(%E9%9B%B6)%EF%BC%9A%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" title="EBPF学习系列(零)：环境准备">
+                        <span class="hidden-mobile">EBPF学习系列(零)：环境准备</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
